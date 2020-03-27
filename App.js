@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {
   SafeAreaView,
@@ -24,50 +16,42 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const App: () => React$Node = () => {
+import { COLOR, ThemeContext, getTheme, withTheme, ListItem, BottomNavigation, Button } from 'react-native-material-ui';
+import light from 'react-native-material-ui/src/styles/themes/light'
+import Footer from './src/components/Footer'
+
+const uiTheme = {
+  ...light,
+  palette: {
+    ...light.palette,
+    accentColor: COLOR.amber900
+  }
+};
+
+
+
+const App = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
+              <ListItem
+                  divider
+                  centerElement={{
+                    primaryText: 'Primary text',
+                  }}
+                  onPress={() => {}}
+              />
+              <Button primary text="Primary" />
+              <Button raised primary text="raised Primary" />
+              <Button accent text="Accent" style={{container: {backgroundColor: COLOR.brown900}}}/>
             </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
         </ScrollView>
-      </SafeAreaView>
+        <Footer/>
+      </ThemeContext.Provider>
     </>
   );
 };
