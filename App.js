@@ -16,41 +16,50 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { COLOR, ThemeContext, getTheme, withTheme, ListItem, BottomNavigation, Button } from 'react-native-material-ui';
-import light from 'react-native-material-ui/src/styles/themes/light'
-import Footer from './src/components/Footer'
+import {
+  COLOR,
+  ThemeContext,
+  getTheme,
+  withTheme,
+  ListItem,
+  BottomNavigation,
+  Button,
+} from 'react-native-material-ui';
+import light from 'react-native-material-ui/src/styles/themes/light';
+import Footer from './src/components/Footer';
 
 const uiTheme = {
   ...light,
   palette: {
     ...light.palette,
-    accentColor: COLOR.amber900
-  }
+    accentColor: COLOR.amber900,
+  },
 };
-
-
 
 const App = () => {
   return (
     <>
       <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <ScrollView
-          style={styles.scrollView}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <ListItem
-                  divider
-                  centerElement={{
-                    primaryText: 'Primary text',
-                  }}
-                  onPress={() => {}}
-              />
-              <Button primary text="Primary" />
-              <Button raised primary text="raised Primary" />
-              <Button accent text="Accent" style={{container: {backgroundColor: COLOR.brown900}}}/>
-            </View>
+        <ScrollView style={styles.scrollView}>
+          <View style={styles.sectionContainer}>
+            <Text style={styles.sectionTitle}>Step One</Text>
+            <ListItem
+              divider
+              centerElement={{
+                primaryText: 'Primary text',
+              }}
+              onPress={() => {}}
+            />
+            <Button primary text="Primary" />
+            <Button raised primary text="raised Primary" />
+            <Button
+              accent
+              text="Accent"
+              style={{container: {backgroundColor: COLOR.brown900}}}
+            />
+          </View>
         </ScrollView>
-        <Footer/>
+        <Footer />
       </ThemeContext.Provider>
     </>
   );
